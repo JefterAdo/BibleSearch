@@ -1,42 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [react({
-    jsxRuntime: 'classic'
-  })],
+  plugins: [react()],
   server: {
-    port: 3001,
-    strictPort: false,
-    host: true,
-    proxy: {
-      '/api': {
-        target: 'https://api.deepseek.com/v1',
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    },
-    hmr: {
-      protocol: 'wss',
-      host: process.env.VITE_HOST
-    }
+    port: 3000,
+    open: true,
   },
   build: {
-    minify: 'terser',
-    sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          router: ['react-router-dom']
-        }
-      }
-    }
+    outDir: "dist",
+    minify: "terser",
+    sourcemap: true,
   },
-  preview: {
-    port: 3000,
-    strictPort: true,
-    host: true
-  }
-})
+});

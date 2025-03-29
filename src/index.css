@@ -1,13 +1,172 @@
+:root {
+  /* Couleurs principales et variantes */
+  --primary-blue: #1a73e8;
+  --primary-blue-dark: #1557b0;
+  --primary-blue-light: #4285f4;
+  --color-gold: #f4b400;
+  --color-gold-dark: #f09900;
+  --color-gold-light: #fbbc04;
+
+  /* Couleurs neutres */
+  --color-white: #ffffff;
+  --color-light-gray: #f8f9fa;
+  --color-gray: #e9ecef;
+  --dark-gray: #333333;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+
+  /* Couleurs d'état */
+  --color-success: #34a853;
+  --color-error: #ea4335;
+  --color-warning: #fbbc04;
+  --color-info: #4285f4;
+
+  /* Espacements (échelle de 4) */
+  --spacing-xxs: 0.25rem; /* 4px */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-xxl: 3rem; /* 48px */
+
+  /* Bordures et rayons */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-full: 9999px;
+
+  /* Ombres avec profondeur progressive */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05), 0 5px 10px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.05), 0 10px 10px rgba(0, 0, 0, 0.1);
+
+  /* Transitions et animations */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Typographie */
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Open Sans", system-ui, -apple-system, sans-serif;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.8;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Effets spéciaux */
+  --glass-blur: blur(10px);
+  --glass-opacity: 0.8;
+  --overlay-dark: rgba(0, 0, 0, 0.5);
+  --overlay-light: rgba(255, 255, 255, 0.5);
+}
+
+/* Reset de base optimisé */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styles de base */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-    }
-    
-    #root {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  font-family: var(--font-body);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typographie responsive */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Liens */
+a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-blue-dark);
+}
+
+/* Focus styles */
+:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Utilitaires d'accessibilité */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Support du mode sombre */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #e8eaed;
+    --text-secondary: #9aa0a6;
+    --color-white: #202124;
+    --color-light-gray: #303134;
+    --color-gray: #3c4043;
+  }
+}
+
+/* Support des préférences de réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Support d'impression */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
